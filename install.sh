@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt update -y && sudo apt install dialog
+
 ################## FUNCOES NECESSÁRIAS PARA A APLICACAO
 
 function EscolhaOTipoDeInstalacao {
@@ -162,5 +164,5 @@ $C.$B.$A.in-addr.arpa IN SOA ns1.$dominio. hostmaster.$dominio. (
 VerificaInstalacaoDoBind
 
 function InstalaDnsRecursivo {
-    
+
 }
