@@ -1,0 +1,10 @@
+#PARA PEGAR APENAS O V4 DO AS:
+
+whois AS21574 | grep -v :: | grep -i inetnum | cut -d ':' -f 2 | sed 's/ //g'
+
+
+#QUEBRAR OS BLOCOS EM /24
+ipcalc 200.169.0.0/20 24 | grep -v '200.169.0.0/20' | grep -i 'network' | cut -d ':' -f2 | cut -d '/' -f1 | sed 's/ //g'
+
+
+
