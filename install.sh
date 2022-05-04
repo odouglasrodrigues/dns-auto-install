@@ -150,7 +150,7 @@ function InstalaDnsRecursivo {
     escolhaListadeAcesso=$(dialog --radiolist "DNS Recursivo - Quais IPs você deseja permitir a consulta?" 12 55 3 \
         "1" "Todos os privados + IPs ja informados" ON \
         "2" "Apenas privados" OFF \
-        "3" "Apenas IPs já informados" OFF --stdout)
+        "3" "Apenas IPs ja informados" OFF --stdout)
 
     MontaAclDeAutorizados
 
