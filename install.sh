@@ -4,6 +4,8 @@
 
 function SalvaPermissoesEReiniciaBind {
 
+    sudo echo "nameserver 127.0.0.1" >/etc/resolv.conf
+    sudo echo "nameserver ::1" >>/etc/resolv.conf
     chown bind. /etc/bind/ -R
     service bind9 restart
 
@@ -258,8 +260,6 @@ function InstalaBind9 {
     sudo apt install bind9 dnsutils -y
     sleep 5
     echo "Configurando servidor..."
-    sudo echo "nameserver 127.0.0.1" >/etc/resolv.conf
-    sudo echo "nameserver ::1" >>/etc/resolv.conf
     sleep 3
 
     echo "
@@ -378,10 +378,10 @@ function VerificaInstalacaoDoBind {
 sudoExiste=$(dpkg -l sudo | grep -i 'ii' | cut -d ' ' -f1)
 
 if [ $sudoExiste = "ii" ]; then
-sudo apt update -y && sudo apt install dialog -y
+    sudo apt update -y && sudo apt install dialog -y
 else
-apt install sudo -y
-sudo apt update -y && sudo apt install dialog -y
+    apt install sudo -y
+    sudo apt update -y && sudo apt install dialog -y
 fi
 
 VerificaInstalacaoDoBind
