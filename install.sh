@@ -1,6 +1,4 @@
 #!/bin/bash
-apt install sudo -y
-sudo apt update -y && sudo apt install dialog -y
 
 ################## FUNCOES NECESSÁRIAS PARA A APLICACAO
 
@@ -315,10 +313,17 @@ function EscolhaOTipoDeInstalacao {
         InstalaDnsRecursivo
         InstalaDnsReverso
     elif [ $instalacaoEscolhida = 2 ]; then
-        InstalaBind9
-        VerificarOrigemDoPrefixo
-        dominio=$(dialog --inputbox 'Informe seu dominio. Ex: meuprovedor.com.br' 10 30 --stdout)
-        InstalaDnsReverso
+        if [ $bind9Existe = "ii" ]; then
+            VerificarOrigemDoPrefixo
+            dominio=$(dialog --inputbox 'Informe seu dominio. Ex: meuprovedor.com.br' 10 30 --stdout)
+            InstalaDnsReverso
+        else
+            InstalaBind9
+            VerificarOrigemDoPrefixo
+            dominio=$(dialog --inputbox 'Informe seu dominio. Ex: meuprovedor.com.br' 10 30 --stdout)
+            InstalaDnsReverso
+        fi
+
     elif [ $instalacaoEscolhida = 3 ]; then
         InstalaBind9
         VerificarOrigemDoPrefixo
@@ -370,6 +375,18 @@ function VerificaInstalacaoDoBind {
 
 ################ FIM DAS FUNCOES
 
+sudoExiste=$(dpkg -l sudo | grep -i 'ii' | cut -d ' ' -f1)
+
+if [ $sudoExiste = "ii" ]; then
+sudo apt update -y && sudo apt install dialog -y
+else
+apt install sudo -y
+sudo apt update -y && sudo apt install dialog -y
+fi
+
 VerificaInstalacaoDoBind
 MoveOsArquivos
 SalvaPermissoesEReiniciaBind
+dialog --title "Sucesso" --infobox "Instalacao Finalizada!!!" 5 35
+sleep 3
+clear
