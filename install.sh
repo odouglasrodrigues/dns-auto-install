@@ -1,5 +1,5 @@
 #!/bin/bash
-
+apt install sudo -y
 sudo apt update -y && sudo apt install dialog
 
 ################## FUNCOES NECESSÁRIAS PARA A APLICACAO
