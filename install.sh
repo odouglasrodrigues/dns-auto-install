@@ -1,6 +1,6 @@
 #!/bin/bash
 apt install sudo -y
-sudo apt update -y && sudo apt install dialog
+sudo apt update -y && sudo apt install dialog -y
 
 ################## FUNCOES NECESSÁRIAS PARA A APLICACAO
 
@@ -339,7 +339,7 @@ function VerificaInstalacaoDoBind {
 
         if [ $modificarBind = 0 ]; then
             echo "Instalando dependencias necessárias..."
-            sudo apt update -y && sudo apt install dialog ipcalc whois
+            sudo apt update -y && sudo apt install dialog ipcalc whois -y
             EscolhaOTipoDeInstalacao
 
         else
@@ -356,7 +356,7 @@ function VerificaInstalacaoDoBind {
 
         if [ $continuarInstalacao = 0 ]; then
             echo "Instalando dependencias necessarias..."
-            sudo apt update -y && sudo apt install dialog ipcalc whois #bind9 dnsutils
+            sudo apt update -y && sudo apt install dialog ipcalc whois -y
             EscolhaOTipoDeInstalacao
 
         else
